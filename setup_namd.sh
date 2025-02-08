@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [[ -f "path" ]]; then
+	rm path
+fi
+
 # Read the molecule name from the file
 mol_name=$(cat mol_name)
 
@@ -30,8 +34,8 @@ for ((i=1; i<=n_traj; i++)); do
 		n_lines=$(wc -l < "s1")
         fi
 ##########################
-        if ((n_lines==n_steps)); then
-	   echo "$(pwd)" >> ../path_test	
+        if ((n_lines>=n_steps)); then
+	   echo "$(pwd)" >> ../path	
         fi   
 ##########################
         cd ..

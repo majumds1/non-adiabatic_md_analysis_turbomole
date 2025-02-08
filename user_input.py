@@ -3,11 +3,15 @@ mol_name = input("Enter the molecule name (assuming trajectories are named molna
 n_traj = input("Enter the number of trajectories : ")
 n_ex = input("Enter the number of excited states in your simulation : ")
 n_steps = input("Enter the number of time steps in your simulation : ")
+step_size = input("Enter the time step size in fs : ")
+
 
 mol_name = mol_name.strip()
 n_traj = n_traj.strip()
 n_ex = n_ex.strip()
 n_steps = n_steps.strip()
+step_size = step_size.strip()
+
 
 # Save to files
 file = open("mol_name", "w") 
@@ -28,6 +32,12 @@ file.close()
 file = open("n_steps","w")
 file.write(str(n_steps)+"\n")
 file.close()
+
+
+file = open("step_size","w")
+file.write(str(step_size)+"\n")
+file.close()
+
 
 print(f"Saved molecule name: {mol_name} in file 'mol_name'")
 print(f"Saved number of trajectories: {n_traj} in file 'n_traj'")

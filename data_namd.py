@@ -1,3 +1,5 @@
+#import matplotlib.pyplot as plt
+#import matplotlib.patches as mpatches
 import numpy as np
 import os
 
@@ -14,13 +16,13 @@ n_ex = int(np.loadtxt('n_excited_states'))
 l = int(np.loadtxt('n_steps'))
 
 
-# numpy arrays and dictionaries for storing data
+# For storing data
 Active = np.zeros([l, n])                                 # Active state
 S = {i: np.zeros([l, n]) for i in range(1, n_ex+1)}       # Excitation energies
 osc = {i: np.zeros([l, n]) for i in range(1, n_ex+1)}     # Oscillator strengths
 
 
-# Loop to read in active state from active file
+# loop to read in active state from active file
 A = []
 for i in range(0,n):
     file = open(os.path.join(path[i].strip(),'active'))
@@ -35,7 +37,7 @@ for i in range(0,n):
     file.close()
 
 
-# Loop to read excitation energies and oscillator strengths
+# loop of read in excitation energies and oscillator sterngths
 for i in range(0,n):
     for j in range(0,n_ex):
         file = np.loadtxt(os.path.join(path[i].strip(),f's{j+1}'))
