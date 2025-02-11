@@ -4,6 +4,7 @@ import math
 import argparse
 
 
+# User arguments
 parser = argparse.ArgumentParser(description="Compute and plot fluorescence spectrum.")
 parser.add_argument('-l', "--lineshape", choices=['g', 'l'], default='l',help="Lineshape function:'g' for Gaussian,'l' for Lorentzian,")
 parser.add_argument('-w', "--linewidth", type=float,default=0.05, help="linewidth en eV")
@@ -11,10 +12,10 @@ parser.add_argument('-s', "--shift", type=float,default=0.0, help="red (-ve) or 
 args = parser.parse_args()
 
 
+# Load options
 sigma = args.linewidth   # in eV
 ls = args.lineshape
 shift=args.shift
-
 
 
 # prefactor
@@ -102,8 +103,8 @@ I2 = np.array(I2)
 
 # Lineshape function 
 # everything in a.u.
-E3, I3 = expand(E1, I1,np.min(S1),np.max(S2))
-E4, I4 = expand(E2, I2, np.min(S1),np.max(S2))
+E3, I3 = expand(E1, I1,np.min(S1),np.max(S2))    # S1 grid
+E4, I4 = expand(E2, I2, np.min(S1),np.max(S2))   # S2 grid
 sigma = sigma*0.0367     # eV to a.u.
 Length = len(E3)
 G3 = np.zeros(Length)
@@ -111,8 +112,8 @@ G4 = np.zeros(Length)
 E = E3
 if (ls == 'l'):
     for i in range(0, Length):
-        G3 = G3 + I3[i]*(1/(np.pi))*((sigma)/((E-E3[i])**2+sigma**2))
-        G4 = G4 + I4[i]*(1/(np.pi))*((sigma)/((E-E3[i])**2+sigma**2))
+        G3 = G3 + I3[i]*(1/(np.pi))*((sigma)/((E-E3[i])**2+sigma**2))    # S1 contribution
+        G4 = G4 + I4[i]*(1/(np.pi))*((sigma)/((E-E3[i])**2+sigma**2))    # S2 contribution
 else:
     for i in range(0, Length):
         G3 = G3 + I3[i]*(1/(2*np.pi*sigma**2)**0.5)*np.exp(((-1)*(E-E3[i])**2)/(2*sigma**2))
@@ -126,6 +127,7 @@ G = G/(pf*total_steps)    # intensity stays in a.u.
 E = E*27.2114
 # apply shift
 E = apply_shift(E, shift)
+# for storing final spectrum in a data file
 Spectrum=np.zeros([2,Length])
 Spectrum[0,:] = E
 Spectrum[1,:] = G
