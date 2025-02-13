@@ -37,7 +37,7 @@ for i in range(0,n):
     file.close()
 
 
-# loop of read in excitation energies and oscillator sterngths
+# loop to read in excitation energies and oscillator sterngths
 for i in range(0,n):
     for j in range(0,n_ex):
         file = np.loadtxt(os.path.join(path[i].strip(),f's{j+1}'))

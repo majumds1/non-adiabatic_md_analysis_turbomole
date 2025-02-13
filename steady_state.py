@@ -19,7 +19,7 @@ shift=args.shift
 
 
 # prefactor
-pf = 2*np.pi*137.036**3
+pf = 2*np.pi*137.036**3    # 2*pi*c^3
 
 
 # shift  

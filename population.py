@@ -22,7 +22,7 @@ step_size = float(np.loadtxt('step_size'))
 
 
 # Set up the argument parser
-parser = argparse.ArgumentParser(description="Plot population analysis from data.")
+parser = argparse.ArgumentParser(description="Plot population analysis from NAMD trajectory data")
 parser.add_argument('-s', '--start', type=int, required=True, help="start time step")
 parser.add_argument('-e', '--end', type=int, required=True, help="end timestep")
 
