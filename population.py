@@ -51,7 +51,7 @@ for state in range(0,n_ex+1):
 
 # Time step tracker
 t=np.zeros(l)
-for i in range(0,l):
+for i in range(1,l):
     t[i] = t[i-1] + step_size
 
 
